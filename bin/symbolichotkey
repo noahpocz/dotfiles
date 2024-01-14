@@ -36,6 +36,7 @@ SYMBOL_MAP = {
     'switch to space 8': 125,
     'switch to space 9': 126,
     'switch to space 10': 127,
+
     'show launchpad': 160
 }
 

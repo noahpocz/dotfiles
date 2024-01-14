@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# install macos apps
+mas install 937984704  # Amphetamine

@@ -1,4 +1,5 @@
-#!/bin/bash
+# make sure terminal text wrapping doesn't get funky
+shopt -s checkwinsize
 
 export PATH=$PATH:~/.bin
 

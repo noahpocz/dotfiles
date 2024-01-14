@@ -55,7 +55,7 @@ sudo pmset -a autorestart 1
 ###############################################################################
 
 # Save screenshots to custom location
-mkdir -p ${HOME}/screenshots
+mkdir -p ~/screenshots
 defaults write com.apple.screencapture location -string "${HOME}/screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)

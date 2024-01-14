@@ -1,8 +1,12 @@
 #!/bin/bash
 
 brew update
+alias bi='brew install'
 
-brew install --cask rectangle
+bi --cask rectangle           # window manager
+bi koekeishiya/formulae/skhd  # simple hotkey daemon
+bi mas                        # install mas-cli to install from the Mac App store
+bi --cask karabiner-elements  # keyboard remapping
 
-brew install koekeishiya/formulae/skhd
+# post-install
 skhd --start-service
