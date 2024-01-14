@@ -1,0 +1,20 @@
+#!/bin/bash
+
+###############################################################################
+# Bind hotkeys for switching spaces
+###############################################################################
+symbolichotkey "switch to space 1" "option + 1"
+symbolichotkey "switch to space 2" "option + 2"
+symbolichotkey "switch to space 3" "option + 3"
+symbolichotkey "switch to space 4" "option + 4"
+symbolichotkey "switch to space 5" "command + option + 1"
+symbolichotkey "switch to space 6" "command + option + 2"
+symbolichotkey "switch to space 7" "command + option + 3"
+symbolichotkey "switch to space 8" "command + option + 4"
+symbolichotkey "switch to space 9" "shift + command + option + 1"
+symbolichotkey "switch to space 10" "shift + command + option + 2"
+
+###############################################################################
+# TODO
+###############################################################################
+symbolichotkey "show launchpad" "command + option + k"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+###############################################################################
+# LICENSE: CC BY-SA 4.0
+# SOURCE: https://apple.stackexchange.com/a/445718
+###############################################################################
+
+defaults write com.apple.AppleMultitouchTrackpad DragLock -bool false
+defaults write com.apple.AppleMultitouchTrackpad Dragging -bool false
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+

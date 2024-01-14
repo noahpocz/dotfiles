@@ -1,0 +1,92 @@
+#!/usr/bin/python3
+
+import subprocess as sp
+import sys
+
+# https://web.archive.org/web/20141112224103/http://hintsforums.macworld.com/showthread.php?t=114785
+SHIFT_MASK = 131072
+CONTROL_MASK = 262144
+OPTION_MASK = 524288
+COMMAND_MASK = 1048576
+
+MASK_MAP = {
+    'shift': SHIFT_MASK,
+    'control': CONTROL_MASK,
+    'option': OPTION_MASK,
+    'command': COMMAND_MASK
+}
+
+KEY_MAP = {
+    '1': 18,
+    '2': 19,
+    '3': 20,
+    '4': 21,
+
+    'k': 40
+}
+
+SYMBOL_MAP = {
+    'switch to space 1': 118,
+    'switch to space 2': 119,
+    'switch to space 3': 120,
+    'switch to space 4': 121,
+    'switch to space 5': 122,
+    'switch to space 6': 123,
+    'switch to space 7': 124,
+    'switch to space 8': 125,
+    'switch to space 9': 126,
+    'switch to space 10': 127,
+    'show launchpad': 160
+}
+
+
+def _parse_key_combo(key_combo):
+    keys = key_combo.split(' + ')
+
+    non_modifier_key = None
+    final_mask = 0
+    for key in keys:
+        mask_value = MASK_MAP.get(key, None)
+        if mask_value is None:
+            non_modifier_key = key
+        else:
+            final_mask += mask_value
+
+    return final_mask, non_modifier_key
+
+
+def _hydrate_xml_template(key_code: int, modifier_mask: int):
+    return f"""
+    <dict>
+        <key>enabled</key><true/>
+        <key>value</key><dict>
+            <key>type</key><string>standard</string>
+            <key>parameters</key>
+            <array>
+                <integer>{65535}</integer>
+                <integer>{key_code}</integer>
+                <integer>{modifier_mask}</integer>
+            </array>
+        </dict>
+    </dict>
+    """
+
+
+def main():
+    symbol, key_combo = (sys.argv[1], sys.argv[2])
+    final_mask, non_modifier_key = _parse_key_combo(key_combo)
+
+    key_code = KEY_MAP[non_modifier_key]
+    xml_arg: str = _hydrate_xml_template(key_code, final_mask)
+
+    symbol_code = SYMBOL_MAP[symbol]
+
+    cmd: str = (f"defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys "
+                f"-dict-add {symbol_code} \"{xml_arg}\"")
+
+    proc = sp.Popen(cmd, shell=True)
+    proc.communicate()
+
+
+if __name__ == '__main__':
+    main()
